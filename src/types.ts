@@ -1,6 +1,6 @@
 import {
     FETCH_BOOKS_REQUEST, FETCH_BOOKS_SUCCESS, FETCH_BOOKS_ERROR, ADD_TO_CARD, BOOK_ON_DECREASE, BOOK_ON_DELETE,
-    SEARCH_BOOKS, FETCH_FAVORITES, FETCH_FAVORITES_SUCCESS, FETCH_FAVORITES_ERROR, DELETE_FAVORITES
+    SEARCH_BOOKS, FETCH_FAVORITES, FETCH_FAVORITES_SUCCESS, FETCH_FAVORITES_ERROR, DELETE_FAVORITES, LOG_IN, LOG_OUT
 } from './constants'
 
 ///// data books /////
@@ -33,6 +33,13 @@ export interface IFavoritesPageInitialStateType {
     loading: boolean
     error: string | null
     favorites: Array<IBooks>
+}
+
+///// state reducer for favoritesPage /////
+export interface IAuthPageInitialStateType {
+    isAuth: boolean
+    login: string
+    password: string
 }
 
 ///// type for actions /////
@@ -89,6 +96,15 @@ export interface IFavoriteErrorAction {
     payload: string
 }
 
+interface IAuthAction {
+    type: typeof LOG_IN,
+    payload: { login: string, password: string }
+}
+
+interface IAuthActionLogOut {
+    type: typeof LOG_OUT
+}
+
 // Actions Type
 // Тип загрузки книг в стор
 export type FetchActionType = IFetchBooksRequestAction | IFetchBooksSuccessAction | IFetchBooksErrorAction
@@ -111,3 +127,6 @@ export type AppActionTypes = FetchActionType | SearchActionType
 
 // Обьединение типов для cartPageReducer
 export type CartPageActionTypes = AddToCardAction | IOnDecreaseActionType | DeleteActionType
+
+// Auth
+export type AuthActions = IAuthAction | IAuthActionLogOut
