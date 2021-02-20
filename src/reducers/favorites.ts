@@ -18,6 +18,12 @@ export const favoritesPageReducer = (state = initialState, action: FetchFavorite
             const { favoriteId, books } = action.payload
             const favoriteBook = books.find(book => book.id === favoriteId)
 
+            if(state.favorites.find(item => item.id === favoriteId)) {
+                return {
+                    ...state
+                }
+            }
+
             return {
                 ...state,
                 loading: false,
