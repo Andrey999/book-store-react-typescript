@@ -31,7 +31,7 @@ export const Favorites = () => {
         <div className="favorites__list" style={{ opacity: opacity, transition: 'opacity 1s' }}>
             {favorites.map(favorite => {
                 return (
-                    <div className="favorites__list-item card-deck">
+                    <div className="favorites__list-item card-deck" key={favorite.id}>
                         <div className="card">
                             <img src={favorite.thumbnailUrl} className="book__image card-img-top" />
                             <div className="card-body">
