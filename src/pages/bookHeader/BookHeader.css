@@ -1,0 +1,102 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 16px;
+    padding: 10px 0;
+    box-shadow: 0px 0px 12px rgba(199, 145, 145, 0.15);
+    background: linear-gradient(to right, #cb11ab 0, #481173 100%) no-repeat;
+}
+
+.header__menu {
+    display: flex;
+    align-items: center;
+}
+
+.book__header-title {
+    font-size: 30px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.nav__menu {
+    margin-left: 50px;
+    margin-top: 5px;
+}
+
+.nav__menu .nav-item .nav-link {
+    padding: 0 10px;
+}
+
+.nav-link-color > div {
+    color: #fff;
+    font-weight: 500;
+}
+
+.nav__menu-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, .8);
+    transition: color .4s ease;
+}
+
+.nav__menu-title:hover {
+    color: rgba(255, 255, 255);
+}
+
+/* icons  */
+.container__icon {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.container__icon-link {
+    padding: 0 20px;
+    text-decoration: none !important;
+}
+
+.container__icon-auth {
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, .8);
+    transition: color .4s ease;
+}
+
+.container__icon-auth:hover {
+    color: rgba(255, 255, 255);
+}
+
+.search-icon {
+    font-size: 30px;
+    color: #fff;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.cart-icon {
+    font-size: 30px;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.shopping__cart {
+    position: relative;
+}
+
+.shopping__cart-total {
+    position: absolute;
+    top: 0;
+    left: 12px;
+    font-size: 18px;
+    font-weight: 500;
+    color: darkblue;
+}
+
+.favorites-icon {
+    font-size: 30px;
+    color: #fff;
+    margin-right: 20px;
+}

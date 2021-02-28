@@ -4,8 +4,8 @@ import { Provider} from 'react-redux';
 import { BrowserRouter as Router} from 'react-router-dom';
 import { store } from './store';
 // import { AppRouter } from './router';
-import { Error } from './components/error/Error';
-import { App } from './components/app/App';
+// import { Error } from './components/error/Error';
+import { App } from './pages/app/App';
 import { BookStoreApi } from './api/bookstore-api';
 
 

@@ -1,0 +1,8 @@
+.book__list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 80px;
+}

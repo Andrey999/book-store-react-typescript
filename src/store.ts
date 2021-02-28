@@ -2,15 +2,9 @@ import { combineReducers, createStore, applyMiddleware, compose, Store } from 'r
 import { appReducer } from './reducers/app';
 import { cartPageReducer } from './reducers/cartPage';
 import { favoritesPageReducer } from './reducers/favorites';
-import { IAppInitialStateType, ICartPageInitialStateType, IFavoritesPageInitialStateType } from './types'
+import { authPageReducer } from './reducers/auth';
+import { IAppInitialStateType, ICartPageInitialStateType, IFavoritesPageInitialStateType, IAuthPageInitialStateType } from './types'
 import thunkMiddleware from 'redux-thunk';
-
-// type AppReducerType = {
-//     app: typeof appReducer,
-//     cartPage: typeof cartPageReducer
-//   };
-
-// export type AppState = ReturnType<typeof rootReducer>
 
 // @ts-ignore
 let composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -18,13 +12,15 @@ let composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const rootReducer = combineReducers({
     app: appReducer,
     cartPage: cartPageReducer,
-    favorites: favoritesPageReducer
+    favorites: favoritesPageReducer,
+    auth: authPageReducer
 })
 
 export interface AppState {
     app: IAppInitialStateType
     cartPage: ICartPageInitialStateType
-    favorites: IFavoritesPageInitialStateType
+    favorites: IFavoritesPageInitialStateType,
+    auth: IAuthPageInitialStateType
 }
 
 export const store: Store = createStore(
