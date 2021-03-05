@@ -1,6 +1,6 @@
 import {
     FETCH_BOOKS_REQUEST, FETCH_BOOKS_SUCCESS, FETCH_BOOKS_ERROR, ADD_TO_CARD, BOOK_ON_DECREASE, BOOK_ON_DELETE,
-    SEARCH_BOOKS, FETCH_FAVORITES, FETCH_FAVORITES_SUCCESS, FETCH_FAVORITES_ERROR, DELETE_FAVORITES, LOG_IN, LOG_OUT
+    SEARCH_BOOKS, FETCH_FAVORITES, FETCH_FAVORITES_SUCCESS, FETCH_FAVORITES_ERROR, DELETE_FAVORITES, LOG_IN, LOG_OUT, IS_AUTH
 } from './constants'
 
 ///// data books /////
@@ -96,18 +96,23 @@ export interface IFavoriteErrorAction {
     payload: string
 }
 
-interface IAuthAction {
+export interface IAuthAction {
     type: typeof LOG_IN,
     payload: { login: string, password: string }
 }
 
-interface IAuthActionLogOut {
+export interface IAuthActionLogOut {
     type: typeof LOG_OUT
+}
+
+export interface IIsAuthAction {
+    type: typeof IS_AUTH,
+    payload: boolean
 }
 
 // Actions Type
 // Тип загрузки книг в стор
-export type FetchActionType = IFetchBooksRequestAction | IFetchBooksSuccessAction | IFetchBooksErrorAction
+export type FetchActionType = IFetchBooksRequestAction | IFetchBooksSuccessAction | IFetchBooksErrorAction | IIsAithAction
 
 // Тип добавления данных в избранное
 export type FetchFavoritesActionType = IFavoriteRequestAction | IAddToFavorite | IOnDeleteFromFavorite | IFavoriteErrorAction
@@ -129,4 +134,4 @@ export type AppActionTypes = FetchActionType | SearchActionType
 export type CartPageActionTypes = AddToCardAction | IOnDecreaseActionType | DeleteActionType
 
 // Auth
-export type AuthActions = IAuthAction | IAuthActionLogOut
+export type AuthActions = IAuthAction | IAuthActionLogOut | IIsAuthAction
