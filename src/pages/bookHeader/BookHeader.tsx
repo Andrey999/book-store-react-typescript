@@ -1,22 +1,24 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { useSelector, shallowEqual } from 'react-redux';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import { InputComponent } from '../input/InputComponent';
 import { AppState } from '../../store';
+import { AuthPageActions } from '../../actions/index';
 import "./BookHeader.css";
 
 
 export const BookHeader = () => {
-    const { items, favorites } = useSelector((state: AppState) => ({
+    const { items, favorites, isAuth } = useSelector((state: AppState) => ({
         items: state.cartPage.items,
-        favorites: state.favorites.favorites
-    }), shallowEqual);
-    const getStorage = localStorage.getItem('isAuth')
+        favorites: state.favorites.favorites,
+        isAuth: state.auth.isAuth
+    }), shallowEqual)
     const [search, setSearch] = useState(false)
+    const dispatch = useDispatch()
 
     const logOut = () => {
         localStorage.clear()
-        window.location.reload()
+        dispatch(AuthPageActions.authLogout())
     }
 
     return (
@@ -43,7 +45,7 @@ export const BookHeader = () => {
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        {getStorage ?
+                        {isAuth ?
                             <NavLink to="/" className="nav-link" onClick={logOut}>
                                 <div className="container__icon-auth">LogOut</div>
                             </NavLink>
