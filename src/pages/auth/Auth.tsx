@@ -16,9 +16,9 @@ const Auth = () => {
         // login: admin;   password: superuser
         if (login === 'admin' && password === 'superuser') {
             localStorage.setItem('isAuth', 'true');
-            dispatch(AuthPageActions.auth(login, password))
+            dispatch(AuthPageActions.authLogin(login, password))
             history.push("/");
-            location.reload();
+            // location.reload();
         } else {
             console.log('Не верно введенные данные');
         }
