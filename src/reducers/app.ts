@@ -1,5 +1,5 @@
 import { IAppInitialStateType, AppActionTypes } from '../types'
-import { Reducer } from 'redux';
+// import { Reducer } from 'redux';
 
 const initialState: IAppInitialStateType = {
     loading: false,
