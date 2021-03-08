@@ -3,7 +3,7 @@ import { BookListItem } from '../bookListItem/bookListItem';
 import { Spinner } from '../spinner/Spinner';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux';
 import { BookStoreApi } from '../../api/bookstore-api';
-import { AppActions, CartPageActions, FavoritesPageActions } from '../../actions/index';
+import { AppActions, CartPageActions, FavoritesPageActions, AuthPageActions } from '../../actions/index';
 import { AppState } from '../../store';
 import { IBooks } from './../../types';
 import './bookList.css';
@@ -21,6 +21,7 @@ const BookList = () => {
 
     useEffect(() => {
         setOpacity(1)
+        dispatch(AuthPageActions.isAuth());
         dispatch(AppActions.booksRequested());
         BookStoreApi.getBooks()
             .then((dataBooks: IBooks[]) => dispatch(AppActions.booksLoaded(dataBooks)))
@@ -60,6 +61,6 @@ const BookList = () => {
             </ul>
         </div>
     );
-};   
+};
 
 export default BookList
