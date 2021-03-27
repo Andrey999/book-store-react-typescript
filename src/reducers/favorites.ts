@@ -3,7 +3,8 @@ import { IFavoritesPageInitialStateType, FetchFavoritesActionType } from '../typ
 const initialState: IFavoritesPageInitialStateType = {
     loading: false,
     error: null,
-    favorites: []
+    favorites: [],
+    highlight: false
 }
 
 export const favoritesPageReducer = (state = initialState, action: FetchFavoritesActionType) => {
@@ -27,7 +28,8 @@ export const favoritesPageReducer = (state = initialState, action: FetchFavorite
             return {
                 ...state,
                 loading: false,
-                favorites: [...state.favorites, favoriteBook]
+                favorites: [...state.favorites, favoriteBook],
+                highlight: true
             };
         //================================================
         case 'DELETE_FAVORITES':
