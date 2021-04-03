@@ -4,7 +4,7 @@ const initialState: IFavoritesPageInitialStateType = {
     loading: false,
     error: null,
     favorites: [],
-    highlight: false
+    highlight: []
 }
 
 export const favoritesPageReducer = (state = initialState, action: FetchFavoritesActionType) => {
@@ -18,6 +18,10 @@ export const favoritesPageReducer = (state = initialState, action: FetchFavorite
         case 'FETCH_FAVORITES_SUCCESS':
             const { favoriteId, books } = action.payload
             const favoriteBook = books.find(book => book.id === favoriteId)
+            // const copyHightlight = state.highlight
+            // const starHighlightId = copyHightlight.includes(favoriteId) ? copyHightlight.filter(x => x !== favoriteId) : [copyHightlight, favoriteId]
+            // console.log('starHighlightId: ', starHighlightId);
+            
 
             if(state.favorites.find(item => item.id === favoriteId)) {
                 return {
@@ -29,16 +33,19 @@ export const favoritesPageReducer = (state = initialState, action: FetchFavorite
                 ...state,
                 loading: false,
                 favorites: [...state.favorites, favoriteBook],
-                highlight: true
+                highlight: [...state.highlight, favoriteId],
+                // highlight: [...state.highlight, starHighlightId]
             };
         //================================================
         case 'DELETE_FAVORITES':
             const deleteFavorite = state.favorites.filter(f => f.id !== action.payload);
+            const deleteFavoriteStar = state.highlight.filter(id => id !== action.payload)
 
             return {
                 ...state,
                 loading: false,
-                favorites: [...deleteFavorite]
+                favorites: [...deleteFavorite],
+                highlight: [...deleteFavoriteStar],
             };
         //================================================
         case 'FETCH_FAVORITES_ERROR':
