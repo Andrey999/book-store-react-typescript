@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BookListItem } from '../bookListItem/bookListItem';
+import { FavoriteStar } from './FavoriteStar'
 import { Spinner } from '../spinner/Spinner';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux';
 import { BookStoreApi } from '../../api/bookstore-api';
@@ -10,14 +11,23 @@ import './bookList.css';
 
 
 const BookList = () => {
-    const { books, inputSearchBooks, loading } = useSelector((state: AppState) => ({
+    const { books, inputSearchBooks, loading, highlight } = useSelector((state: AppState) => ({
         loading: state.app.loading,
         error: state.app.error,
         books: state.app.books,
-        inputSearchBooks: state.app.inputSearchBooks
+        inputSearchBooks: state.app.inputSearchBooks,
+        highlight: state.favorites.highlight
+
     }), shallowEqual);
     const dispatch = useDispatch()
     const [opacity, setOpacity] = useState<number>(0)
+    const [clickedStar, setClickedStar] = useState<Array<string>>([])
+    // console.log('clickedStar: ', clickedStar)
+
+    // const singleClickedStar = books?.find(book => book.id === clickedStar)
+    // let item = clickedStar.map(i => i)
+    console.log('highlight: ', highlight);
+
 
     useEffect(() => {
         setOpacity(1)
@@ -27,6 +37,14 @@ const BookList = () => {
             .then((dataBooks: IBooks[]) => dispatch(AppActions.booksLoaded(dataBooks)))
             .catch((error: string) => dispatch(AppActions.booksError(error)));
     }, []);
+
+    const addToFavorite = (id: string) => {
+        setClickedStar(clickedStar.includes(id)
+            ? clickedStar.filter(x => x !== id)
+            : [...clickedStar, id]
+        )
+        dispatch(FavoritesPageActions.addToFavorites(id))
+    }
 
     if (loading) {
         return (
@@ -53,8 +71,14 @@ const BookList = () => {
                             <BookListItem
                                 book={book}
                                 addToCard={() => dispatch(CartPageActions.addToCard(book.id))}
+                                // addToFavorite={() => addToFavorite(book.id)}
                                 addToFavorite={() => dispatch(FavoritesPageActions.addToFavorites(book.id))}
+                                highlight={highlight.includes(book.id)}
+                                // setClickedStar={() => setClickedStar(book.id)}
+                                clickedStar={clickedStar}
+                                singleClickedStar={() => null}
                             />
+                            {/* <FavoriteStar clickedStar={clickedStar} singleClickedStar={singleClickedStar} /> */}
                         </li>
                     );
                 })}
