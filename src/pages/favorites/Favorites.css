@@ -8,6 +8,12 @@
     flex-wrap: wrap;
 }
 
+.favorites__list:after {
+    content: "";
+    height: 0;
+    width: 305px;
+}
+
 .favorites__list-item {
     width: 330px;
     max-width: 330px;
