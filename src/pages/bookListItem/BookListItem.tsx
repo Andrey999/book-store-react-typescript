@@ -1,15 +1,25 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import { IBooks } from '../../types'
+import { FavoriteStar } from '../bookList/FavoriteStar'
 import "./BookListItem.css";
 
 interface BookListItemProps {
     book: IBooks
     addToCard: () => void
     addToFavorite: () => void
+    highlight: Array<string>
+    // setClickedStar: (s: string) => void
+    setClickedStar: () => void
+    // light: boolean
+    clickedStar: any
+    singleClickedStar: any
 }
 
 export const BookListItem = (props: BookListItemProps) => {
-    const { book, addToCard, addToFavorite } = props
+    const { book, addToCard, addToFavorite, setClickedStar, clickedStar, singleClickedStar, highlight } = props
+    // console.log('clickedStar: ', clickedStar );
+    // console.log('singleClickedStar: ', singleClickedStar );
+
     return (
         <div className="book__list-item card-deck">
             <div className="card">
@@ -25,7 +35,14 @@ export const BookListItem = (props: BookListItemProps) => {
                         <p className="text-black-50 mb-1 mr-1">Categories:</p>
                         <span className="font-weight-normal"> {book.categories}</span>
                     </div>
-                    <div className="addToFavorite" onClick={addToFavorite}><i className="fa fa-star"></i></div> 
+                    {/* < FavoriteStar
+                        highlight={highlight}
+                        addToFavorite={addToFavorite}
+                        setClickedStar={() => setClickedStar(book.id)}
+                        clickedStar={clickedStar}
+                        singleClickedStar={singleClickedStar?.id}
+                    /> */}
+                    <div className="addToFavorite" style={{ color: highlight ? '#cb11ab' : 'rgb(245,245,245)'}} onClick={addToFavorite}><i className="fa fa-star" onClick={setClickedStar}></i></div> 
                 </div>
                 <div className="card__footer-btn card-footer d-flex align-items-center">
                     <button className="btn addToCarts" onClick={addToCard}>Add to cart</button>
