@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BookListItem } from '../bookListItem/bookListItem';
+import { BookListItem } from '../bookListItem/BookListItem';
 import { FavoriteStar } from './FavoriteStar'
 import { Spinner } from '../spinner/Spinner';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux';
