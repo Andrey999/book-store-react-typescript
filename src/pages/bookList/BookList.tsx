@@ -7,7 +7,7 @@ import { BookStoreApi } from '../../api/bookstore-api';
 import { AppActions, CartPageActions, FavoritesPageActions, AuthPageActions } from '../../actions/index';
 import { AppState } from '../../store';
 import { IBooks } from './../../types';
-import './bookList.css';
+import './BookList.css';
 
 
 const BookList = () => {
