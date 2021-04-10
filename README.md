@@ -1,2 +1,2 @@
 # book-store-react-typescript 
-### bookstore-react.netlify.app
+### https://bookstore-react.netlify.app/
